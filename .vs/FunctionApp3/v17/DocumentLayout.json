@@ -14,21 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Function1.cs",
-              "DocumentMoniker": "C:\\Users\\pryad\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430 (2)\\azure-function\\FunctionApp3\\Function1.cs",
-              "RelativeDocumentMoniker": "FunctionApp3\\Function1.cs",
-              "ToolTip": "C:\\Users\\pryad\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430 (2)\\azure-function\\FunctionApp3\\Function1.cs",
-              "RelativeToolTip": "FunctionApp3\\Function1.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAANAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-26T15:54:47.578Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -40,6 +27,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Function1.cs",
+              "DocumentMoniker": "C:\\Users\\pryad\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430 (2)\\azure-function\\FunctionApp3\\Function1.cs",
+              "RelativeDocumentMoniker": "FunctionApp3\\Function1.cs",
+              "ToolTip": "C:\\Users\\pryad\\Desktop\\\u041D\u043E\u0432\u0430\u044F \u043F\u0430\u043F\u043A\u0430 (2)\\azure-function\\FunctionApp3\\Function1.cs",
+              "RelativeToolTip": "FunctionApp3\\Function1.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAYwCgAAAA8AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-11-26T15:54:47.578Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
+using System.Text.Json;
 
-namespace FunctionApp3
+namespace FunctionsApp
 {
     public class Function1
     {
@@ -16,27 +17,41 @@ namespace FunctionApp3
         }
 
         [Function("Function1")]
-        public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
+        public async Task<IActionResult> Run(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestData req)
         {
-            string name = req.Query["name"];
-            string aString = req.Query["a"];
-            string bString = req.Query["b"];
+            _logger.LogInformation("C# HTTP trigger function processed a request.");
 
-            if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(aString) || string.IsNullOrEmpty(bString))
+            try
             {
-                string requestBody = Convert.ToString(new StreamReader(req.Body));
-                dynamic data = JsonConvert.DeserializeObject(requestBody);
-                name = name ?? data?.name;
-                aString = aString ?? data?.a;
-                bString = bString ?? data?.b;
-            }
+                string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
+                var Data = JsonSerializer.Deserialize<Request>(requestBody);
 
-            if (string.IsNullOrEmpty(name) || !int.TryParse(aString, out int a) || !int.TryParse(bString, out int b))
+                if (Data == null || string.IsNullOrWhiteSpace(Data.name))
+                {
+                    return new BadRequestObjectResult("Invalid input: name, a, and b are required.");
+                }
+
+                string name = Data.name;
+                int a = Data.a;
+                int b = Data.b;
+
+                int sum = a + b;
+
+                string responseMessage = $"Oleksandr Priadko: Hei {name}. Lukujen {a} ja {b} summa on {sum}.";
+                return new OkObjectResult(responseMessage);
+            }
+            catch (Exception ex)
             {
-                return new BadRequestObjectResult("Please provide valid 'name', 'a', and 'b'");
+                _logger.LogError($"Error processing request: {ex.Message}");
+                return new BadRequestObjectResult("An error occurred while processing the request.");
             }
-
-            return new OkObjectResult($"Hei {name}. Lukujen {a} ja {b} summa on {a + b}.");
         }
+    }
+    public class Request
+    {
+        public string name { get; set; }
+        public int a { get; set; }
+        public int b { get; set; }
     }
 }
